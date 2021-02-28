@@ -4,14 +4,14 @@ mod file;
 
 use configuration::init::InitializationConfiguration;
 use environment::cli::parse_command_line_arguments;
-use file::parse::FileMetadata;
+use file::read::BonfireFile;
 
 fn main() {
     let mut initialization_configuration: InitializationConfiguration = Default::default();
 
     parse_command_line_arguments(&mut initialization_configuration);
 
-    let file_metadata = FileMetadata::new(&initialization_configuration.filename);
+    let bonfire_file: BonfireFile = BonfireFile::new(&initialization_configuration);
 
-    println!("{:?}", file_metadata)
+    println!("{:?}", bonfire_file)
 }
