@@ -9,6 +9,7 @@ mod environment;
 mod file;
 mod logger;
 mod memory;
+mod mips;
 mod system;
 
 use configuration::init::InitializationConfiguration;
