@@ -4,6 +4,7 @@ extern crate log;
 use env_logger::Env;
 
 mod configuration;
+mod cpu;
 mod environment;
 mod file;
 mod logger;
@@ -22,6 +23,8 @@ fn main() {
     parse_command_line_arguments(&mut initialization_configuration);
 
     let ultra_system: UltraSystem = UltraSystem::new(&initialization_configuration);
+
+    info!("{:#?}", ultra_system);
 }
 
 fn initialize_logger() -> () {
