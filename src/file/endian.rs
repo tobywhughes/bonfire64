@@ -55,3 +55,7 @@ fn check_endianness_validity(endianness: &Endianness, initial_byte: u8) {
     trace!("ENDIANNESS CHECK SUCCESS")
   }
 }
+
+#[cfg(test)]
+#[path = "./endian.test.rs"]
+mod endian_test;
