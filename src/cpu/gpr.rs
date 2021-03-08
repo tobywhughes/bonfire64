@@ -50,6 +50,8 @@ impl GeneralPurposeRegisters {
     self.saved4 = 0x0000_0000_0000_0001;
     self.saved6 = 0x0000_0000_0000_003F;
     self.stack_pointer = 0xFFFF_FFFF_A400_1FF0;
+
+    self.program_counter = 0x0000_0000_A400_0040;
   }
 
   pub fn get(&self, index: u8) -> u64 {
