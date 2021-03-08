@@ -18,11 +18,10 @@ fn main() {
     parse_command_line_arguments(&mut initialization_configuration);
 
     let bonfire_file: BonfireFile = BonfireFile::new(&initialization_configuration);
-
-    info!("{:?}", bonfire_file);
 }
 
 fn initialize_logger() -> () {
-    let log_env = Env::default().filter_or("BONFIRE_LOG_LEVEL", "info");
+    let log_env = Env::default().filter_or("BONFIRE_LOG_LEVEL", "trace");
     env_logger::init_from_env(log_env);
+    trace!("LOGGER INITIALIZED")
 }
