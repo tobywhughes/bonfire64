@@ -8,10 +8,12 @@ mod environment;
 mod file;
 mod logger;
 mod memory;
+mod system;
 
 use configuration::init::InitializationConfiguration;
 use environment::cli::parse_command_line_arguments;
 use file::read::BonfireFile;
+use system::system::UltraSystem;
 
 fn main() {
     initialize_logger();
@@ -19,7 +21,7 @@ fn main() {
 
     parse_command_line_arguments(&mut initialization_configuration);
 
-    let bonfire_file: BonfireFile = BonfireFile::new(&initialization_configuration);
+    let ultra_system: UltraSystem = UltraSystem::new(&initialization_configuration);
 }
 
 fn initialize_logger() -> () {
