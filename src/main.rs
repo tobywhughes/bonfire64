@@ -6,6 +6,7 @@ use env_logger::Env;
 mod configuration;
 mod environment;
 mod file;
+mod logger;
 
 use configuration::init::InitializationConfiguration;
 use environment::cli::parse_command_line_arguments;

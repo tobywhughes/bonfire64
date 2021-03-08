@@ -1,3 +1,4 @@
+use crate::logger::utils::{process_end_trace, process_start_trace};
 use std::fs::File;
 use std::io::Read;
 
@@ -32,11 +33,14 @@ fn get_endianness_by_byte(initial_byte: u8) -> Endianness {
 }
 
 pub fn parse_endianness(file: &mut File) -> Endianness {
+  process_start_trace("Parsing Endianness");
+
   let initial_byte = get_initial_byte_from_file(file);
   let endianness: Endianness = get_endianness_by_byte(initial_byte);
 
   check_endianness_validity(&endianness, initial_byte);
 
+  process_end_trace();
   endianness
 }
 
