@@ -15,4 +15,8 @@ impl UltraSystem {
 
     UltraSystem { file, cpu }
   }
+
+  pub fn simulate_boot(&mut self) {
+    self.cpu.general_purpose_registers.simulate_boot();
+  }
 }

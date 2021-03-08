@@ -22,7 +22,9 @@ fn main() {
 
     parse_command_line_arguments(&mut initialization_configuration);
 
-    let ultra_system: UltraSystem = UltraSystem::new(&initialization_configuration);
+    let mut ultra_system: UltraSystem = UltraSystem::new(&initialization_configuration);
+
+    ultra_system.simulate_boot();
 
     info!("{:#?}", ultra_system);
 }

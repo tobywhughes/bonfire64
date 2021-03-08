@@ -1,51 +1,58 @@
 #[derive(Default, Debug)]
 pub struct GeneralPurposeRegisters {
   //Special Purpose
-  program_counter: u32,
-  hi_lo: u32,
-  llb: u32,
+  program_counter: u64,
+  hi_lo: u64,
+  llb: u64,
   //Misc.
-  assembler_temporary: u32,
-  return_address: u32,
+  assembler_temporary: u64,
+  return_address: u64,
   //Subroutine return value
-  value0: u32,
-  value1: u32,
+  value0: u64,
+  value1: u64,
   //Arguments
-  argument0: u32,
-  argument1: u32,
-  argument2: u32,
-  argument3: u32,
+  argument0: u64,
+  argument1: u64,
+  argument2: u64,
+  argument3: u64,
   //Temporary Registers
-  temporary0: u32,
-  temporary1: u32,
-  temporary2: u32,
-  temporary3: u32,
-  temporary4: u32,
-  temporary5: u32,
-  temporary6: u32,
-  temporary7: u32,
-  temporary8: u32,
-  temporary9: u32,
+  temporary0: u64,
+  temporary1: u64,
+  temporary2: u64,
+  temporary3: u64,
+  temporary4: u64,
+  temporary5: u64,
+  temporary6: u64,
+  temporary7: u64,
+  temporary8: u64,
+  temporary9: u64,
   //Saved Registers
-  saved0: u32,
-  saved1: u32,
-  saved2: u32,
-  saved3: u32,
-  saved4: u32,
-  saved5: u32,
-  saved6: u32,
-  saved7: u32,
+  saved0: u64,
+  saved1: u64,
+  saved2: u64,
+  saved3: u64,
+  saved4: u64,
+  saved5: u64,
+  saved6: u64,
+  saved7: u64,
   //Kernel Registers
-  kernel0: u32,
-  kernel1: u32,
+  kernel0: u64,
+  kernel1: u64,
   //Pointers
-  global_pointer: u32,
-  stack_pointer: u32,
-  frame_pointer: u32,
+  global_pointer: u64,
+  stack_pointer: u64,
+  frame_pointer: u64,
 }
 
 impl GeneralPurposeRegisters {
-  pub fn get(&self, index: u8) -> u32 {
+  pub fn simulate_boot(&mut self) {
+    self.temporary3 = 0xFFFF_FFFF_A400_0040;
+    self.saved4 = 0x0000_0000_0000_0001;
+    self.saved6 = 0x0000_0000_0000_003F;
+    self.stack_pointer = 0xFFFF_FFFF_A400_1FF0;
+  }
+
+  pub fn get(&self, index: u8) -> u64 {
     match index {
       0 => 0,
       1 => self.assembler_temporary,
@@ -83,7 +90,7 @@ impl GeneralPurposeRegisters {
     }
   }
 
-  pub fn set(&mut self, index: u8, value: u32) -> () {
+  pub fn set(&mut self, index: u8, value: u64) -> () {
     match index {
       1 => self.assembler_temporary = value,
       2 => self.value0 = value,
