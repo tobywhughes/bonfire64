@@ -7,6 +7,7 @@ mod configuration;
 mod environment;
 mod file;
 mod logger;
+mod memory;
 
 use configuration::init::InitializationConfiguration;
 use environment::cli::parse_command_line_arguments;
@@ -22,7 +23,7 @@ fn main() {
 }
 
 fn initialize_logger() -> () {
-    let log_env = Env::default().filter_or("BONFIRE_LOG_LEVEL", "trace");
+    let log_env = Env::default().filter_or("BONFIRE_LOG_LEVEL", "debug");
     env_logger::init_from_env(log_env);
     trace!("LOGGER INITIALIZED")
 }
